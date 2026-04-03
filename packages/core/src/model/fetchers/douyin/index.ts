@@ -5,7 +5,7 @@
 
 // 导入所有函数用于组装 fetcher 对象
 import { fetchCommentReplies, fetchWorkComments } from './comment'
-import { fetchDynamicEmojiList, fetchEmojiList, fetchLiveRoomInfo, fetchMusicInfo, requestLoginQrcode } from './misc'
+import { fetchDynamicEmojiList, fetchEmojiList, fetchLiveRoomInfo, fetchMusicInfo, fetchSeriesList, requestLoginQrcode } from './misc'
 import { fetchSuggestWords, searchContent } from './search'
 import type { IDouyinFetcher } from './types'
 import { fetchUserFavoriteList, fetchUserProfile, fetchUserRecommendList, fetchUserVideoList } from './user'
@@ -63,7 +63,8 @@ export const douyinFetcher = {
   fetchLiveRoomInfo,
   requestLoginQrcode,
   fetchEmojiList,
-  fetchDynamicEmojiList
+  fetchDynamicEmojiList,
+  fetchSeriesList
 } as IDouyinFetcher
 
 /** 抖音 Fetcher 类型 */

@@ -94,6 +94,16 @@ export interface DouyinQrcodeOptions extends BaseRequestOptions {
   verify_fp: string
 }
 
+/** 抖音系列列表请求参数 */
+export interface DouyinSeriesListOptions extends BaseRequestOptions {
+  /** 用户 sec_uid，如 `MS4wLjABAAAA...` */
+  sec_uid: string
+  /** 获取数量，默认 20 */
+  number?: number
+  /** 游标，用于翻页，默认 0 */
+  cursor?: number
+}
+
 /** 抖音弹幕请求参数 */
 export interface DouyinDanmakuOptions extends BaseRequestOptions {
   /** 作品 ID */
@@ -215,4 +225,9 @@ export interface IDouyinFetcher {
    * 获取抖音动态表情列表
    */
   fetchDynamicEmojiList: NoParamMethodOverload<DouyinReturnTypeMap['dynamicEmojiList']>
+
+  /**
+   * 获取抖音用户系列列表
+   */
+  fetchSeriesList: MethodOverload<DouyinSeriesListOptions, DouyinReturnTypeMap['seriesList']>
 }

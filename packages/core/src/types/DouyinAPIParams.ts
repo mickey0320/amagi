@@ -179,6 +179,23 @@ export interface DouyinMethodOptionsMap {
     /** 合辑ID */
     aweme_id: string
   }
+
+  /** 获取系列列表数据 */
+  SeriesListParams: {
+    methodType: 'seriesList'
+    /** 用户ID */
+    sec_uid: string
+    /**
+     * 获取的数量
+     * @defaultValue 20
+     */
+    number?: number
+    /**
+     * 游标，用于获取下一页
+     * @defaultValue 0
+     */
+    cursor?: number
+  }
 }
 
 /**
@@ -206,4 +223,5 @@ export type DouyinMethodOptMap = {
   dynamicEmojiList: DouyinMethodOptionsMap['EmojiProParams']
   commentReplies: DouyinMethodOptionsMap['CommentReplyParams']
   danmakuList: DouyinMethodOptionsMap['DanmakuParams']
+  seriesList: DouyinMethodOptionsMap['SeriesListParams']
 }

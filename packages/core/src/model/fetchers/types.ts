@@ -70,6 +70,7 @@ export type {
   DouyinMusicOptions,
   DouyinQrcodeOptions,
   DouyinSearchOptions,
+  DouyinSeriesListOptions,
   DouyinSuggestWordsOptions,
   DouyinUserListOptions,
   DouyinUserOptions,

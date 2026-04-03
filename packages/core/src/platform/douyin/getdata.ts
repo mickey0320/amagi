@@ -218,6 +218,24 @@ export const DouyinData = async <T extends keyof DouyinDataOptionsMap> (
       return response
     }
 
+    case 'seriesList': {
+      const url = douyinApiUrls.getSeriesList({ sec_uid: data.sec_uid, cursor: data.cursor, number: data.number })
+      const customConfig = {
+        ...baseRequestConfig,
+        headers: {
+          ...baseRequestConfig.headers,
+          ...(!requestConfig?.headers || !('Referer' in requestConfig.headers)) && {
+            Referer: `https://www.douyin.com/user/${data.sec_uid}`
+          }
+        }
+      }
+      const result = await GlobalGetData(data.methodType, {
+        ...customConfig,
+        url: buildSignedUrl(url, signType, userAgent)
+      })
+      return result
+    }
+
     case 'userFavoriteList': {
       const urlGenerator: ApiUrlGenerator<DouyinDataOptionsMap['userFavoriteList']['opt']> = (params) =>
         douyinApiUrls.getUserFavoriteList(params)

@@ -7,7 +7,7 @@ import { RequestConfig } from 'amagi/server'
 import { DouyinReturnTypeMap } from 'amagi/types/ReturnDataType/Douyin'
 import { Result } from 'amagi/validation'
 
-import type { ConditionalReturnType, DouyinLiveRoomOptions, DouyinMusicOptions, DouyinQrcodeOptions, TypeMode } from '../types'
+import type { ConditionalReturnType, DouyinLiveRoomOptions, DouyinMusicOptions, DouyinQrcodeOptions, DouyinSeriesListOptions, TypeMode } from '../types'
 import { fetchDouyinInternal } from './internal'
 
 /**
@@ -112,4 +112,27 @@ export async function fetchDynamicEmojiList<M extends TypeMode = 'loose'> (
   requestConfig?: RequestConfig
 ): Promise<Result<ConditionalReturnType<DouyinReturnTypeMap['dynamicEmojiList'], M>>> {
   return fetchDouyinInternal('dynamicEmojiList', {}, { cookie, requestConfig })
+}
+
+/**
+ * 获取抖音用户系列列表
+ * @param options - 系列列表参数
+ * @param options.sec_uid - 用户 sec_uid
+ * @param options.number - 获取数量，默认 20
+ * @param options.cursor - 游标，用于翻页，默认 0
+ * @param cookie - 抖音 Cookie (可选)
+ * @param requestConfig - 请求配置 (可选)
+ * @returns 系列列表数据
+ * @example
+ * ```typescript
+ * const result = await fetchSeriesList({ sec_uid: 'MS4wLjABAAAA...' }, cookie)
+ * console.log(result.data.series_list) // 系列列表
+ * ```
+ */
+export async function fetchSeriesList<M extends TypeMode = 'loose'> (
+  options: DouyinSeriesListOptions,
+  cookie?: string,
+  requestConfig?: RequestConfig
+): Promise<Result<ConditionalReturnType<DouyinReturnTypeMap['seriesList'], M>>> {
+  return fetchDouyinInternal('seriesList', options, { cookie, requestConfig })
 }

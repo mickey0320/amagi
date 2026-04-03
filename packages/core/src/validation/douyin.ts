@@ -135,6 +135,14 @@ export const DouyinDanmakuParamsSchema: zod.ZodType<DouyinMethodOptionsMap['Danm
   }
 )
 
+/** 系列列表参数验证 */
+export const DouyinSeriesListParamsSchema: zod.ZodType<DouyinMethodOptionsMap['SeriesListParams']> = zod.object({
+  methodType: zod.literal('seriesList', { error: '方法类型必须是"seriesList"' }),
+  sec_uid: zod.string({ error: '用户ID必须是字符串' }).min(1, { error: '用户ID不能为空' }),
+  number: smartPositiveInteger('获取数量必须是正整数').optional().default(20),
+  cursor: zod.coerce.number({ error: '游标必须是数字' }).int({ error: '游标必须是整数' }).min(0, { error: '游标不能小于0' }).default(0).optional()
+})
+
 /** 抖音参数验证模式映射 */
 export const DouyinValidationSchemas = {
   textWork: DouyinWorkParamsSchema,
@@ -155,7 +163,8 @@ export const DouyinValidationSchemas = {
   emojiList: DouyinEmojiListParamsSchema,
   dynamicEmojiList: DouyinEmojiProParamsSchema,
   commentReplies: DouyinCommentReplyParamsSchema,
-  danmakuList: DouyinDanmakuParamsSchema
+  danmakuList: DouyinDanmakuParamsSchema,
+  seriesList: DouyinSeriesListParamsSchema
 } as const
 
 /** 抖音方法路由映射 */
@@ -178,7 +187,8 @@ export const DouyinMethodRoutes = {
   dynamicEmojiList: '/fetch_emoji_pro_list',
   liveRoomInfo: '/fetch_user_live_videos',
   danmakuList: '/fetch_work_danmaku',
-  loginQrcode: '/fetch_login_qrcode'
+  loginQrcode: '/fetch_login_qrcode',
+  seriesList: '/fetch_series_list'
 } as const
 
 /** 抖音方法类型 */

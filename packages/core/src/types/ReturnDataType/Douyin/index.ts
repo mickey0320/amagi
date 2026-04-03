@@ -6,6 +6,7 @@ import type { DyEmojiProList } from './EmojiProList'
 import type { DyImageAlbumWork } from './ImageAlbumWork'
 import type { DyMusicWork } from './MusicWork'
 import type { SearchInfoGeneralData, SearchInfoUser, SearchInfoVideo } from './SearchInfo'
+import type { DySeriesList } from './SeriesList'
 import type { DySlidesWork } from './SlidesWork'
 import type { DySuggestWords } from './SuggestWords'
 import { UserFavoriteList } from './UserFavoriteList'
@@ -27,6 +28,7 @@ export * from './EmojiProList'
 export * from './ImageAlbumWork'
 export * from './MusicWork'
 export * from './SearchInfo'
+export * from './SeriesList'
 export * from './SlidesWork'
 export * from './SuggestWords'
 export * from './UserInfo'
@@ -60,4 +62,5 @@ export interface DouyinReturnTypeMap {
   liveRoomInfo: DyUserLiveVideos
   loginQrcode: any
   commentReplies: CommentReply
+  seriesList: DySeriesList
 }

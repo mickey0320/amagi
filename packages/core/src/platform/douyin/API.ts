@@ -237,7 +237,7 @@ class DouyinAPI {
     const baseUrl = 'https://www.douyin.com/aweme/v1/web/series/list/'
     const params = {
       ...this.getBaseParams(),
-      sec_uid: data.sec_uid,
+      sec_user_id: data.sec_uid,
       cursor: data.cursor ?? 0,
       count: data.number ?? 20,
       version_code: '170400',

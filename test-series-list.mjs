@@ -25,7 +25,10 @@ async function testSeriesList () {
     console.log('Cookie 长度:', COOKIE.length, '字符\n')
 
     // 导入构建后的包
-    const { douyinFetcher, validateDouyinParams } = await import('./packages/core/dist/default/index.mjs')
+    const { createAmagiClient, validateDouyinParams } = await import('./packages/core/dist/default/index.mjs')
+
+    // 创建客户端
+    const client = createAmagiClient({ cookies: { douyin: COOKIE } })
 
     // 先测试参数验证
     console.log('测试参数验证...')
@@ -39,7 +42,7 @@ async function testSeriesList () {
 
     // 先测试用户信息 API
     console.log('\n测试用户信息 API...')
-    const userProfile = await douyinFetcher.fetchUserProfile({ sec_uid: SEC_USER_ID }, COOKIE)
+    const userProfile = await client.douyin.fetcher.fetchSeriesList({ sec_uid: SEC_USER_ID })
     console.log('用户信息响应:', JSON.stringify(userProfile, null, 2))
     if (!userProfile.success) {
       console.log('❌ 用户信息获取失败:', userProfile.message)
@@ -53,7 +56,7 @@ async function testSeriesList () {
       cursor: 0
     }
     console.log('\n请求参数:', JSON.stringify(params, null, 2))
-    const result = await douyinFetcher.fetchSeriesList(params, COOKIE)
+    const result = await client.douyin.fetcher.fetchSeriesList(params)
 
     // 检查结果
     if (result.success) {

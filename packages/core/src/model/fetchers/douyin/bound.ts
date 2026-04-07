@@ -8,7 +8,7 @@ import { DouyinReturnTypeMap } from 'amagi/types/ReturnDataType/Douyin'
 
 import type { BoundMethodOverload, BoundNoParamMethodOverload } from '../shared/overload-types'
 import { fetchCommentReplies, fetchWorkComments } from './comment'
-import { fetchDynamicEmojiList, fetchEmojiList, fetchLiveRoomInfo, fetchMusicInfo, requestLoginQrcode } from './misc'
+import { fetchDynamicEmojiList, fetchEmojiList, fetchLiveRoomInfo, fetchMusicInfo, fetchSeriesList, requestLoginQrcode } from './misc'
 import { fetchSuggestWords, searchContent } from './search'
 import type {
   DouyinCommentRepliesOptions,
@@ -18,6 +18,7 @@ import type {
   DouyinMusicOptions,
   DouyinQrcodeOptions,
   DouyinSearchOptions,
+  DouyinSeriesListOptions,
   DouyinSuggestWordsOptions,
   DouyinUserListOptions,
   DouyinUserOptions,
@@ -97,6 +98,9 @@ export interface IBoundDouyinFetcher {
 
   /** 获取抖音动态表情列表 */
   fetchDynamicEmojiList: BoundNoParamMethodOverload<DouyinReturnTypeMap['dynamicEmojiList']>
+
+  /** 获取抖音用户系列列表 */
+  fetchSeriesList: BoundMethodOverload<DouyinSeriesListOptions, DouyinReturnTypeMap['seriesList']>
 }
 
 /**
@@ -144,6 +148,7 @@ export function createBoundDouyinFetcher (
     fetchLiveRoomInfo: (options, reqConfig?: RequestConfig) => fetchLiveRoomInfo(options, cookie, reqConfig ?? requestConfig),
     requestLoginQrcode: (options, reqConfig?: RequestConfig) => requestLoginQrcode(options, cookie, reqConfig ?? requestConfig),
     fetchEmojiList: (options, reqConfig?: RequestConfig) => fetchEmojiList(options, cookie, reqConfig ?? requestConfig),
-    fetchDynamicEmojiList: (options, reqConfig?: RequestConfig) => fetchDynamicEmojiList(options, cookie, reqConfig ?? requestConfig)
+    fetchDynamicEmojiList: (options, reqConfig?: RequestConfig) => fetchDynamicEmojiList(options, cookie, reqConfig ?? requestConfig),
+    fetchSeriesList: (options, reqConfig?: RequestConfig) => fetchSeriesList(options, cookie, reqConfig ?? requestConfig)
   }
 }
